@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ceasar", "Ceasar.csproj", "{B04501EB-A739-48F9-835B-1BE47B61F815}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unitTests", "..\unitTests\unitTests.csproj", "{F4A4B275-3883-4544-8504-ACBE633F4AC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B04501EB-A739-48F9-835B-1BE47B61F815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04501EB-A739-48F9-835B-1BE47B61F815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04501EB-A739-48F9-835B-1BE47B61F815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04501EB-A739-48F9-835B-1BE47B61F815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A4B275-3883-4544-8504-ACBE633F4AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A4B275-3883-4544-8504-ACBE633F4AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A4B275-3883-4544-8504-ACBE633F4AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A4B275-3883-4544-8504-ACBE633F4AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A43A544E-67D6-489D-9093-D585409DC306}
+	EndGlobalSection
+EndGlobal
