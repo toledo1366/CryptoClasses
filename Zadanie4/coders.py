@@ -1,45 +1,99 @@
+from models.message import Message
 from cryptography.fernet import Fernet
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.asymmetric import rsa, dsa
-from cryptography.hazmat.primitives.serialization import load_pem_parameters
+from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
 
-class SymmetricCoders():
-        
-    def __init__(self, key):
-        self.key = key
-        self.fernet = Fernet(key)
-    
+class Symmetric:
+
+    def __init__(self):
+        self.key = None
+
     @staticmethod
-    def GenerateKey():
-        key = Fernet.generate_key()
-        return key
+    def generateKey():
+        """Method generating symmetric key.
 
-    def Encoder(self, message):
-        token = self.fernet.encrypt(bytes(message, 'utf-8'))
-        return token
-    
-    def Decoder(self, message):
-        token = self.fernet.decrypt(bytes(message, 'utf-8'))
-        return token
+        Returns:
+            str: Symmetric key.
+        """
+        return Fernet.generate_key().hex()
 
-class AsymetricCoders():
+    def setKey(self, givenKey: hex) -> None:
+       self.key = Fernet(bytearray.fromhex(givenKey))
 
-    def __init__(self, key):
-        self.key = key
-        self.fernet = Fernet(key)
-    
-    @staticmethod
-    def GenerateKeys():
-        private_key = rsa.generate_private_key(
-        public_exponent=65537,
-        key_size=2048,
-        backend=default_backend()
+    def encode(self, message: str) -> bytes:
+        """Method encoding given message.
+
+        Args:
+            message (str): Given message to encode.
+
+        Returns:
+            bytes: Encoded message.
+        """
+        encoded = self.key.encrypt(bytes(message, "utf-8"))
+        return encoded
+
+    def decode(self, message: str) -> bytes:
+        """Method decoding encoded message.
+
+        Args:
+            message (str): Given encoded message to decode.
+
+        Returns:
+            bytes: Decoded message.
+        """
+        decoded = self.key.decrypt(bytes(message, "utf-8"))
+        return decoded
+
+class Asymmetric:
+
+    def __init__(self):
+        self.privateKey = None
+        self.publicKey = None
+
+    def generateKeys(self):
+        basic = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048
         )
-        public_key = private_key.public_key()
-        return {"Private key" : private_key, "Public key" : public_key}
-    
-    @staticmethod
-    def generate_ssh_keys():
-        return {"Private key" : 1, "Public key" : 1}
+
+        private_key = basic.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.TraditionalOpenSSL,
+            encryption_algorithm=serialization.NoEncryption()
+        ).hex()
+        
+        public_key = basic.public_key().public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        ).hex()
+
+        keys = [private_key, public_key]
+        return keys
+
+    def setKeys(self, keys):
+        self.privateKey = keys[0]
+        self.publicKey = keys[1]
+
+    def generateSshKeys(self):
+        basic = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048
+        )
+
+        privateSshKey = basic.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.OpenSSH,
+            encryption_algorithm=serialization.NoEncryption()
+        ).hex()
+
+        publicSshKey = basic.public_key().public_bytes(
+            encoding=serialization.Encoding.OpenSSH,
+            format=serialization.PublicFormat.OpenSSH
+        ).hex()
+
+        sshKeys = [privateSshKey, publicSshKey]
+        return sshKeys
+
+
     
 
