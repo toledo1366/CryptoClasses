@@ -1,5 +1,5 @@
-from models.message import Message
-from coders import Symmetric, Asymmetric
+from models.message import *
+from coders import *
 from fastapi import FastAPI
 from typing import Optional
 
@@ -72,10 +72,84 @@ async def postMessageDecodedSym(message: Message):
 # Asymmetric routes
 @app.get("/asym/keys")
 async def getKeys():
-    keys = asymmetric.generateKeys()
+    """Gets private and public hex keys.
+
+    Returns:
+        JSON: HEX keys.
+    """
+    asymmetric.generateKeys()
+    keys = asymmetric.getHex()
     return {"Private key:":f"{keys[0]}", "Public key:":f"{keys[1]}"}
 
 @app.get("/asym/keys/ssh")
 async def getSshKeys():
-    ssh_keys = asymmetric.generateSshKeys()
+    """Gets private and public SSH keys.
+
+    Returns:
+        JSON: SSH keys.
+    """
+    ssh_keys = asymmetric.getSsh()
     return {"Private SSH key":f"{ssh_keys[0]}", "Public SSH key":f"{ssh_keys[1]}"}
+
+@app.post("/asym/keys")
+async def postKeys(privateKey, publicKey):
+    """Posts private and public HEX keys.
+
+    Args:
+        privateKey (HEX): Private hex key.
+        publicKey (HEX): Public hex key.
+    """
+    asymmetric.setKeys(privateKey, publicKey)
+    return{"message": "Keys have been set."}
+
+@app.post("/asym/sign")
+def postAsymmetricSingResponse(message: Message):
+    """Posts signed message.
+
+    Args:
+        message (Message): Message content.
+
+    Returns:
+        JSON: Signed message content. 
+    """
+    signedMessage = asymmetric.signMessage(message.body)
+    return {"Signed Message": f"{signedMessage}"}
+
+@app.post("/asym/verify")
+def postAsymmetricVerifyResponse(message:SignedMessage):
+    """Posts response if message was verified.
+
+    Args:
+        message (SignedMessage): Message raw and message signed.
+
+    Returns:
+        JSON: Information if message was verified.
+    """
+    result = asymmetric.verifyMessage(message.body, message.signature)
+    return {"Verification result":f"{result}"}
+
+@app.post("/asym/encode")
+def postEncodedMessage(message:Message):
+    """Posts encoded message.
+
+    Args:
+        message (Message): Raw message content.
+
+    Returns:
+        JSON: Response with encoded message.
+    """
+    encodedMessage = asymmetric.encode(message.body)
+    return {"Message":f"{encodedMessage}"}
+
+@app.post("/asym/decode")
+def postDecodedMessage(message:Message):
+    """Posts decoded message.
+
+    Args:
+        message (Message): Encoded message content.
+
+    Returns:
+        JSON: Response with decoded message.
+    """
+    decodedMessage=asymmetric.decode(message.body)
+    return {"Message":f"{decodedMessage}"}
