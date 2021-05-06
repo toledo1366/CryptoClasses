@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainEx.Core", "BlockchainEx.Core\BlockchainEx.Core.csproj", "{F279479E-7952-4997-BF6C-EDFA06428ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainEx.Droid", "BlockchainEx.Droid\BlockchainEx.Droid.csproj", "{843E414E-5382-41F0-8F34-D17B65FE43D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{09CD707F-FF5C-4E2E-809B-A3FF8552A229}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F279479E-7952-4997-BF6C-EDFA06428ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F279479E-7952-4997-BF6C-EDFA06428ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F279479E-7952-4997-BF6C-EDFA06428ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F279479E-7952-4997-BF6C-EDFA06428ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843E414E-5382-41F0-8F34-D17B65FE43D8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{09CD707F-FF5C-4E2E-809B-A3FF8552A229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09CD707F-FF5C-4E2E-809B-A3FF8552A229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09CD707F-FF5C-4E2E-809B-A3FF8552A229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09CD707F-FF5C-4E2E-809B-A3FF8552A229}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F96EF5C5-6D09-4ECD-9F3F-D299E990A2B0}
+	EndGlobalSection
+EndGlobal
